@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  server1:
+    build: ./server1
+    container_name: server1
+    ports:
+      - "5001:5000"
+    networks:
+      - backend
+
+  server2:
+    build: ./server2
+    container_name: server2
+    ports:
+      - "5002:5000"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

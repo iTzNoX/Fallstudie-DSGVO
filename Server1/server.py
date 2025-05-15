@@ -15,7 +15,7 @@ def send_data():
     with open(user_data_path, "r") as f:
         data = json.load(f)
 
-    server2_url = "http://localhost:5002/receive_data"
+    server2_url = "http://server2:5000/receive_data"
 
     try:
         response = requests.post(server2_url, json=data)

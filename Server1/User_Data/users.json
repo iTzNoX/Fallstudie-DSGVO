@@ -1,0 +1,72 @@
+[
+    {
+        "id": 2841,
+        "first_name": "Nicole",
+        "last_name": "Mcintosh",
+        "email": "michelle43@example.net",
+        "birth_date": "1990-10-24"
+    },
+    {
+        "id": 6608,
+        "first_name": "Laura",
+        "last_name": "Smith",
+        "email": "hhensley@example.org",
+        "birth_date": "1996-05-05"
+    },
+    {
+        "id": 2710,
+        "first_name": "Sue",
+        "last_name": "Richards",
+        "email": "robertsamber@example.net",
+        "birth_date": "1973-08-27"
+    },
+    {
+        "id": 4788,
+        "first_name": "Jeffrey",
+        "last_name": "Quinn",
+        "email": "jack81@example.org",
+        "birth_date": "2007-01-26"
+    },
+    {
+        "id": 4457,
+        "first_name": "Michael",
+        "last_name": "Johnson",
+        "email": "keithknapp@example.org",
+        "birth_date": "1978-05-07"
+    },
+    {
+        "id": 6709,
+        "first_name": "Raymond",
+        "last_name": "Berry",
+        "email": "taylordyer@example.net",
+        "birth_date": "2015-11-06"
+    },
+    {
+        "id": 6192,
+        "first_name": "Tyler",
+        "last_name": "Baker",
+        "email": "ambercunningham@example.com",
+        "birth_date": "2020-08-19"
+    },
+    {
+        "id": 5643,
+        "first_name": "Ellen",
+        "last_name": "Brown",
+        "email": "chapmandeborah@example.com",
+        "birth_date": "2021-05-15"
+    },
+    {
+        "id": 8824,
+        "first_name": "Thomas",
+        "last_name": "Campos",
+        "email": "jessica56@example.org",
+        "birth_date": "1979-09-09"
+    },
+    {
+        "id": 5273,
+        "first_name": "Natasha",
+        "last_name": "Osborne",
+        "email": "rachel57@example.com",
+        "birth_date": "2019-06-18"
+    }
+]

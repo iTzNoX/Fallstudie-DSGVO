@@ -13,7 +13,8 @@ def receive_data():
     if not data:
         return jsonify("Error: keine Daten empfangen"), 400
 
-    user_data_path = os.path.join(os.path.dirname(__file__), "Received_Data", "users.json")
+    user_data_path = os.path.join(os.path.dirname(__file__), "Received_Data")
+    os.makedirs(user_data_path, exist_ok=True)
 
     filepath = os.path.join(user_data_path, "users_received.json")
     with open(filepath, "w") as f:

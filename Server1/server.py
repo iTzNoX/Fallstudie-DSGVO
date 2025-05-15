@@ -8,9 +8,9 @@ app = Flask(__name__)
 def home():
     return "running"
 
-@app.route('send_data', methods=["POST"])
+@app.route('/send_data', methods=["POST"])
 def send_data():
-    user_data_path = os.path.join(os.path.dirname(__file__), "User_Data", "users.json")
+    user_data_path = os.path.join(os.path.dirname(__file__), "Recieved_Data", "users.json")
 
     with open(user_data_path, "r") as f:
         data = json.load(f)

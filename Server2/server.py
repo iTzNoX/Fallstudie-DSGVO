@@ -7,15 +7,15 @@ app = Flask(__name__)
 def home():
     return "running"
 
-@app.route('/recieve_data', methods=["POST"])
-def recieve_data():
+@app.route('/receive_data', methods=["POST"])
+def receive_data():
     data = request.get_json()
     if not data:
         return jsonify("Error: keine Daten empfangen"), 400
 
-    user_data_path = os.path.join(os.path.dirname(__file__), "Recieved_Data", "users.json")
+    user_data_path = os.path.join(os.path.dirname(__file__), "Received_Data", "users.json")
 
-    filepath = os.path.join(user_data_path, "users_recieved.json")
+    filepath = os.path.join(user_data_path, "users_received.json")
     with open(filepath, "w") as f:
         json.dump(data, f, indent=4)
 

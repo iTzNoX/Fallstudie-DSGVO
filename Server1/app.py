@@ -1,14 +1,31 @@
-from flask import Flask
-
+import os
+import json
+import requests
+from flask import Flask, jsonify
 app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
 def home():
     return "running"
 
-@app.route('/ping', methods=["GET"])
-def ping():
-    return "pong"
+@app.route('send_data', methods=["POST"])
+def send_data():
+    user_data_path = os.path.join(os.path.dirname(__file__), "User_Data", "users.json")
+
+    with open(user_data_path, "r") as f:
+        data = json.load(f)
+
+    server2_url = "http://localhost:5002/recieve_data"
+
+    try:
+        response = requests.post(server2_url, json=data)
+        if response.status_code == 200:
+            return jsonify("Daten wurden gesendet")
+        else:
+            return jsonify(f"Daten wurden nicht gesendet: \n"
+                           f"{response.text}")
+    except Exception as e:
+        return jsonify(e),
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

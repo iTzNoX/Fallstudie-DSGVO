@@ -1,2 +1,4 @@
 # Private Keys und Zertifikate
 *.pem
+*.json
+*.jsonl

@@ -8,7 +8,7 @@ SERVER2_URL = "http://localhost:5002"
 def send_data():
     url = f"{SERVER1_URL}/send_data"
     try:
-        response = requests.post(url)
+        response = requests.post(url, verify=os.path.join(os.path.dirname(__file__), "../Certs", "certificates.pem"))
         response.raise_for_status()
         print("Daten wurden erfolgreich verschickt")
         return response.json()

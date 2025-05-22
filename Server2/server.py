@@ -24,4 +24,9 @@ def receive_data():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    cert_folder = os.path.join(os.path.dirname(__file__), "Certs")
+    context = (
+        os.path.join(cert_folder, "certificates.pem"),
+        os.path.join(cert_folder, "key.pem"),
+    )
+    app.run(host='0.0.0.0', port=5000, ssl_context=context)

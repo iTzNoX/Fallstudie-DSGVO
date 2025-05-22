@@ -15,10 +15,12 @@ def send_data():
     with open(user_data_path, "r") as f:
         data = json.load(f)
 
-    server2_url = "http://server2:5000/receive_data"
+    server2_url = "https://server2:5000/receive_data"
 
     try:
-        response = requests.post(server2_url, json=data)
+        response = requests.post(server2_url,
+                                 json=data,
+                                 verify=os.path.join(os.path.dirname(__file__), "../Certs", "certificates.pem"))
         if response.status_code == 200:
             return jsonify("Daten wurden gesendet")
         else:
@@ -28,4 +30,9 @@ def send_data():
         return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    cert_folder = os.path.join(os.path.dirname(__file__), "Certs")
+    context = (
+        os.path.join(cert_folder, "certificates.pem"),
+        os.path.join(cert_folder, "key.pem"),
+    )
+    app.run(host='0.0.0.0', port=5000, ssl_context=context)

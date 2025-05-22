@@ -2,8 +2,8 @@ import requests
 import subprocess
 import os
 
-SERVER1_URL = "http://localhost:5001"
-SERVER2_URL = "http://localhost:5002"
+SERVER1_URL = "https://localhost:5001"
+SERVER2_URL = "https://localhost:5002"
 
 def send_data():
     url = f"{SERVER1_URL}/send_data"

@@ -8,6 +8,8 @@ services:
       - "5001:5000"
     networks:
       - backend
+    volumes:
+      - ./Certs:/app/Certs
 
   server2:
     build: ./server2
@@ -16,6 +18,8 @@ services:
       - "5002:5000"
     networks:
       - backend
+    volumes:
+      - ./Certs:/app/Certs
 
 networks:
   backend:

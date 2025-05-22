@@ -1,6 +1,7 @@
 import os
 import json
 from flask import Flask, request, jsonify
+from intern_controller import write_log_entry
 app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
@@ -9,10 +10,13 @@ def home():
 
 @app.route('/receive_data', methods=["POST"])
 def receive_data():
+    write_log_entry("Server2", "Empfangprozess wurde gestartet")
     data = request.get_json()
     if not data:
+        write_log_entry("Server2", "Es wurden keine Daten gesendet. Vorgang wird abgebrochen", level="ERRIR")
         return jsonify("Error: keine Daten empfangen"), 400
 
+    write_log_entry("Server2", "Daten erhalten")
     user_data_path = os.path.join(os.path.dirname(__file__), "Received_Data")
     os.makedirs(user_data_path, exist_ok=True)
 
@@ -20,6 +24,7 @@ def receive_data():
     with open(filepath, "w") as f:
         json.dump(data, f, indent=4)
 
+    write_log_entry("Server2", "Daten wurden abgespeichert", level="SUCCESS")
     return jsonify("Daten sind erfolgreich angekommen")
 
 

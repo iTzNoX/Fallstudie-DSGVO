@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from intern_controller import write_log_entry
 app = Flask(__name__)
 
@@ -11,6 +11,24 @@ def home():
 @app.route('/receive_data', methods=["POST"])
 def receive_data():
     write_log_entry("Server2", "Empfangprozess wurde gestartet")
+
+    auth_header = request.headers.get("Authorization")
+    if auth_header is None:
+        abort(401, description="Authorization header fehlt")
+
+    if not auth_header.startswith("Bearer "):
+        abort(401, description="Ungültiges Authorization Format")
+
+    token = auth_header.split(" ")[1]
+
+    key_path = os.path.join(os.path.dirname(__file__), "Certs", "header_key.json")
+    with open(key_path, "r") as f:
+        full_api_key = json.load(f)
+    header_key = full_api_key["api_key"]
+
+    if token != header_key:
+        abort(401, description="Ungültiger API Key")
+
     data = request.get_json()
     if not data:
         write_log_entry("Server2", "Es wurden keine Daten gesendet. Vorgang wird abgebrochen", level="ERRIR")

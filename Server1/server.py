@@ -20,9 +20,16 @@ def send_data():
 
     server2_url = "https://server2:5000/receive_data"
 
+    key_path = os.path.join(os.path.dirname(__file__), "Certs", "header_key.json")
+    with open(key_path, "r") as f:
+        header_key = json.load(f)
+    headers = {"Authorization": f"Bearer {header_key['api_key']}"}
+    write_log_entry("Server1", "api_key wurde ausgelesen und gesetzt")
+
     try:
         response = requests.post(server2_url,
                                  json=data,
+                                 headers=headers,
                                  verify=os.path.join(os.path.dirname(__file__), "Certs", "certificates.pem"))
         if response.status_code == 200:
             write_log_entry("Server1", "Daten wurden gesendet", level="SUCCESS")

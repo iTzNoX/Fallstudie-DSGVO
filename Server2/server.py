@@ -31,7 +31,7 @@ def receive_data():
 
     data = request.get_json()
     if not data:
-        write_log_entry("Server2", "Es wurden keine Daten gesendet. Vorgang wird abgebrochen", level="ERRIR")
+        write_log_entry("Server2", "Es wurden keine Daten gesendet. Vorgang wird abgebrochen", level="ERROR")
         return jsonify("Error: keine Daten empfangen"), 400
 
     write_log_entry("Server2", "Daten erhalten")
